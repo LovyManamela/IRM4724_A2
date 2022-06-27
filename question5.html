@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+      <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+      <script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
+      <script src = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+   </head>
+
+   <body>
+      <div data-role = "button" id = "pageone">
+         <div data-role = "header">
+            <h1>Cylinder on a canvas</h1>
+         </div>
+
+         <div data-role = "main" class = "ui-content">
+            <p> 
+       <button type="button" class="btn btn-secondary" (click)="drawCylinder(50,35,50,35);" >
+                            Display
+                        </button>
+</p>
+<p><span id="outputConvertedValue"></span></p>
+         </div> 
+      </div>
+      <script>
+	  
+      function drawCylinder ( x, y, w, h ) {
+  context.beginPath(); //to draw the top circle
+  for (var i = 0 * Math.PI; i < 2 * Math.PI; i += 0.001) {
+
+    xPos = (this.x + this.w / 2) - (this.w / 2 * Math.sin(i)) * 
+      Math.sin(0 * Math.PI) + (this.w / 2 * Math.cos(i)) * 
+      Math.cos(0 * Math.PI);
+
+    yPos = (this.y + this.h / 8) + (this.h / 8 * Math.cos(i)) * 
+      Math.sin(0 * Math.PI) + (this.h / 8 * 
+      Math.sin(i)) * Math.cos(0 * Math.PI);
+
+    if (i == 0) {
+      context.moveTo(xPos, yPos);
+
+    } 
+    else
+    {
+      context.lineTo(xPos, yPos);
+    }
+  }
+  context.moveTo(this.x, this.y + this.h / 8);
+  context.lineTo(this.x, this.y + this.h - this.h / 8);
+
+  for (var i = 0 * Math.PI; i < Math.PI; i += 0.001) {
+    xPos = (this.x + this.w / 2) - (this.w / 2 * Math.sin(i)) * Math.sin(0 * Math.PI) + (this.w / 2 * Math.cos(i)) * Math.cos(0 * Math.PI);
+    yPos = (this.y + this.h - this.h / 8) + (this.h / 8 * Math.cos(i)) * Math.sin(0 * Math.PI) + (this.h / 8 * Math.sin(i)) * Math.cos(0 * Math.PI);
+
+    if (i == 0) {
+      context.moveTo(xPos, yPos);
+
+    } 
+    else 
+    {
+      context.lineTo(xPos, yPos);
+    }
+  }
+  context.moveTo(this.x + this.w, this.y + this.h / 8);
+  context.lineTo(this.x + this.w, this.y + this.h - this.h / 8);            
+  context.stroke();
+}
+      </script>
+   </body>
+</html>
